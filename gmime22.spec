@@ -1,15 +1,15 @@
 Summary:	libGMIME library
 Name:		gmime
-Version:	0.1.0
+Version:	0.3.0
 Release:	1
 License:	LGPL
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
-Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/libgmime/%{name}-%{version}.tar.gz
+Source0:	http://www.xtorshun.org/gmime/sources/%{name}-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
-URL:		http://primates.helixcode.com/~fejj/GMIME/
+URL:		http://www.xtorshun.org/gmime/
 BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
