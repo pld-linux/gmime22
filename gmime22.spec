@@ -1,13 +1,18 @@
+%bcond_without	dotnet	# without .net support
+
 Summary:	GMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
 Version:	2.1.9
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.1/gmime-%{version}.tar.gz
 # Source0-md5:	8bd24a56d5f56be9150deb9840a0812a
+Source1:	%{name}-mono.tar.bz2
+# Source1-md5:	e8d865b5baac1d925ab8ab8068ee3473
 Patch0:		%{name}-link.patch
+Patch1:		%{name}-mono.patch
 URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -15,6 +20,7 @@ BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	gtk-doc
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+%{?with_dotnet:BuildRequires:   mono-csharp >= 0.95}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -49,9 +55,36 @@ Static gmime library.
 %description static -l pl
 Statyczna biblioteka gmime.
 
+%package -n dotnet-gmime-sharp
+Summary:	.NET language bindings for gmime
+Summary(pl):	Wi±zania gmime dla .NET
+Group:		Development/Libraries
+Requires:	mono
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description -n dotnet-gmime-sharp
+.NET language bindings for gmime
+
+%description -n dotnet-gmime-sharp -l pl
+Wi±zania gmime dla .NET
+
+%package -n dotnet-gmime-sharp-devel
+Summary:	Development part of dotnet-gmime-sharp
+Summary(pl):	Czê¶æ dla programistów dotnet-gmime-sharp
+Group:		Development/Libraries
+Requires:	mono
+Requires:	dotnet-%{name}-sharp = %{epoch}:%{version}-%{release}
+
+%description -n dotnet-gmime-sharp-devel
+Development part of dotnet-gmime-sharp
+
+%description -n dotnet-gmime-sharp-devel -l pl
+Czê¶æ dla programistów dotnet-gmime-sharp
+
 %prep
-%setup -q
+%setup -q -a1
 %patch0 -p1
+%patch1 -p0
 
 %build
 %{__libtoolize}
@@ -60,6 +93,7 @@ Statyczna biblioteka gmime.
 %{__automake}
 %configure \
 	--enable-ipv6 \
+	%{?with_dotnet:--enable-mono} \
 	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
@@ -84,6 +118,15 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 %attr(755,root,root) %{_bindir}/*
+
+%files -n dotnet-gmime-sharp
+%defattr(644,root,root,755)
+%dir %{_libdir}/mono/gac/gmime-sharp
+%{_libdir}/mono/gac/gmime-sharp
+
+%files -n dotnet-gmime-sharp-devel
+%defattr(644,root,root,755)
+%{_datadir}/gapi/*
 
 %files devel
 %defattr(644,root,root,755)
