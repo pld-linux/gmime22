@@ -8,7 +8,6 @@ Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.1/gmime-%{version}.tar.gz
 # Source0-md5:	137c03e24401317c67feb647eb446eab
 Patch0:		%{name}-link.patch
-Patch1:		%{name}-ipv6-fix.patch
 URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
