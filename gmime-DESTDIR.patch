@@ -1,18 +1,18 @@
-diff -Naur gmime-0.9.0.orig/doc/Makefile.in gmime-0.9.0/doc/Makefile.in
---- gmime-0.9.0.orig/doc/Makefile.in	Wed May  1 03:58:52 2002
-+++ gmime-0.9.0/doc/Makefile.in	Thu May 30 11:17:25 2002
-@@ -232,10 +232,10 @@
+--- gmime-1.90.1/doc/Makefile.am~	Tue Sep  3 21:34:17 2002
++++ gmime-1.90.1/doc/Makefile.am	Tue Sep  3 21:34:17 2002
+@@ -36,11 +36,11 @@
  	rm -rf sgml html $(DOC_MODULE)-decl-list.txt $(DOC_MODULE)-decl.txt 
  
  install-data-local:
 -	$(INSTALL) -d -m 0755 $(TARGET_DIR)
 -	$(INSTALL_DATA) $(srcdir)/html/*.html $(TARGET_DIR)
 -	$(INSTALL_DATA) $(srcdir)/html/index.sgml $(TARGET_DIR)
--	gtkdoc-fixxref --module=$(DOC_MODULE) --html-dir=$(HTML_DIR)
-+	$(INSTALL) -d -m 0755 $(DESTDIR)$(TARGET_DIR)
++	$(INSTALL) -d $(DESTDIR)$(TARGET_DIR)
 +	$(INSTALL_DATA) $(srcdir)/html/*.html $(DESTDIR)$(TARGET_DIR)
 +	$(INSTALL_DATA) $(srcdir)/html/index.sgml $(DESTDIR)$(TARGET_DIR)
-+	gtkdoc-fixxref --module=$(DOC_MODULE) --html-dir=$(DESTDIR)$(HTML_DIR)
+ 	if test "x$(enable_gtk_doc)" = "xyes"; then \
+-		gtkdoc-fixxref --module=$(DOC_MODULE_VERSIONED) --html-dir=$(HTML_DIR); \
++		gtkdoc-fixxref --module=$(DOC_MODULE_VERSIONED) --html-dir=$(DESTDIR)$(HTML_DIR); \
+ 	fi
  
  dist-hook:
- 	(cd $(srcdir) ; tar cvf - html) | (cd $(distdir); tar xf -)
