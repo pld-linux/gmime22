@@ -10,3 +10,14 @@ diff -urN gmime-2.1.5.orig/configure.in gmime-2.1.5/configure.in
  
  dnl Check for libiconv
  AM_ICONV()
+--- gmime-2.1.5/gmime/Makefile.am.orig	2004-05-07 00:57:08.000000000 +0200
++++ gmime-2.1.5/gmime/Makefile.am	2004-05-24 18:59:49.926371000 +0200
+@@ -124,7 +124,7 @@
+ 	gmime-table-private.h		\
+ 	gmime-charset-map-private.h
+ 
+-libgmime_2_0_la_LIBADD = $(top_builddir)/util/libutil.la
++libgmime_2_0_la_LIBADD = $(top_builddir)/util/libutil.la $(GLIB_LIBS)
+ libgmime_2_0_la_LDFLAGS = -version-info $(GMIME_VERSION_INFO)
+ 
+ gen_table_SOURCES = gen-table.c
