@@ -2,12 +2,13 @@ Summary:	libGMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
 Version:	1.90.1
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Development/Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/gmime-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-am15.patch
+Patch2:		%{name}-types.patch
 URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -57,6 +58,7 @@ Statyczne biblioteki gmime.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 rm -f missing
