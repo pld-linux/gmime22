@@ -4,7 +4,7 @@ Summary:	GMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
 Version:	2.1.9
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.1/gmime-%{version}.tar.gz
@@ -22,6 +22,11 @@ BuildRequires:	libtool
 BuildRequires:	pkgconfig
 %{?with_dotnet:BuildRequires:   mono-csharp >= 0.95}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%ifarch alpha
+# mono still broken
+%undefine	with_dotnet
+%endif
 
 %description
 This library allows you to manipulate MIME messages.
@@ -129,6 +134,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -n dotnet-gmime-sharp-devel
 %defattr(644,root,root,755)
 %{_datadir}/gapi/*
+%dir %{_libdir}/mono/gmime-sharp
+%{_libdir}/mono/gmime-sharp/*
 %{_pkgconfigdir}/gmime-sharp.pc
 %endif
 
