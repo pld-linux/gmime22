@@ -71,6 +71,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	HTML_DIR=%{_gtkdocdir}
 
+rm -f $RPM_BUILD_ROOT%{_bindir}/uu{de,en}code
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
