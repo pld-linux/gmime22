@@ -9,13 +9,14 @@
 Summary:	GMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
-Version:	2.1.10
+Version:	2.1.11
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.1/gmime-%{version}.tar.gz
-# Source0-md5:	4e82952bb0ca66f1b09fd64725bff9f8
+# Source0-md5:	7207ea18eb808f4f0940e805f6a8789f
 Patch0:		%{name}-link.patch
+Patch1:		%{name}-libdir.patch
 URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -91,6 +92,7 @@ Czê¶æ dla programistów dotnet-gmime-sharp
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
