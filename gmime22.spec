@@ -55,6 +55,7 @@ Static gmime library.
 %description static -l pl
 Statyczna biblioteka gmime.
 
+
 %package -n dotnet-gmime-sharp
 Summary:	.NET language bindings for gmime
 Summary(pl):	Wi±zania gmime dla .NET
@@ -93,7 +94,7 @@ Czê¶æ dla programistów dotnet-gmime-sharp
 %{__automake}
 %configure \
 	--enable-ipv6 \
-	%{?with_dotnet:--enable-mono} \
+	--%{?with_dotnet:enable}%{!?with_dotnet:disable}-mono \
 	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
@@ -119,6 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 %attr(755,root,root) %{_bindir}/*
 
+%if %{with dotnet}
 %files -n dotnet-gmime-sharp
 %defattr(644,root,root,755)
 %dir %{_libdir}/mono/gac/gmime-sharp
@@ -127,6 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n dotnet-gmime-sharp-devel
 %defattr(644,root,root,755)
 %{_datadir}/gapi/*
+%endif
 
 %files devel
 %defattr(644,root,root,755)
