@@ -29,7 +29,7 @@ Requires:	%{name} = %{version}
 Libraries, include files, etc you can use to develop libgmime
 applications.
 
-%description -l pl devel
+%description devel -l pl
 Bibliotek, pliki nag³ówkowe itp. potrzebne do tworzenia programów
 opartych o bibliotekê gmime.
 
@@ -42,7 +42,7 @@ Requires:	%{name}-devel = %{version}
 %description static
 Static gmime libraries.
 
-%description -l pl static
+%description static -l pl
 Statyczne biblioteki gmime.
 
 %prep
