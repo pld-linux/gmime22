@@ -34,24 +34,18 @@
 diff -uNr gmime-1.90.0.old/doc/Makefile.am gmime-1.90.0/doc/Makefile.am
 --- gmime-1.90.0.old/doc/Makefile.am	Mon Jun 10 08:25:47 2002
 +++ gmime-1.90.0/doc/Makefile.am	Thu Jul 18 19:29:00 2002
-@@ -11,9 +11,9 @@
- 
- EXTRA_DIST=gmime-docs.sgml gmime-sections.txt
- 
--HTML_DIR=$(datadir)/gtk-doc/html
-+HTML_DIR=$(DESTDIR)/$(datadir)/gtk-doc/html
- 
--TARGET_DIR=$(HTML_DIR)/$(DOC_MODULE)
-+TARGET_DIR=$(DESTDIR)/$(HTML_DIR)/$(DOC_MODULE)
- 
- scan:
- 	gtkdoc-scan --module=$(DOC_MODULE) --source-dir=$(DOC_SOURCE_DIR) --ignore-headers="gmime-type-utils.h gmime-charset-map-private.h gmime-table-private.h acconfig.h config.h strlib.h memchunk.h iconv-detect.h zentimer.h zenprofiler.h"
-@@ -35,7 +35,7 @@
+@@ -35,10 +35,10 @@
  	rm -rf sgml html $(DOC_MODULE)-decl-list.txt $(DOC_MODULE)-decl.txt 
  
  install-data-local:
 -	$(INSTALL) -d -m 0755 $(TARGET_DIR)
-+	$(INSTALL) -d -m 0755 $(TARGET_DIR) $(HTML_DIR)/$(DOC_MODULE)
- 	$(INSTALL_DATA) $(srcdir)/html/*.html $(TARGET_DIR)
- 	$(INSTALL_DATA) $(srcdir)/html/index.sgml $(TARGET_DIR)
- 	gtkdoc-fixxref --module=$(DOC_MODULE) --html-dir=$(HTML_DIR)
+-	$(INSTALL_DATA) $(srcdir)/html/*.html $(TARGET_DIR)
+-	$(INSTALL_DATA) $(srcdir)/html/index.sgml $(TARGET_DIR)
+-	gtkdoc-fixxref --module=$(DOC_MODULE) --html-dir=$(HTML_DIR)
++	$(INSTALL) -d -m 0755 $(DESTDIR)$(TARGET_DIR) $(DESTDIR)$(HTML_DIR)/$(DOC_MODULE)
++	$(INSTALL_DATA) $(srcdir)/html/*.html $(DESTDIR)$(TARGET_DIR)
++	$(INSTALL_DATA) $(srcdir)/html/index.sgml $(DESTDIR)$(TARGET_DIR)
++	gtkdoc-fixxref --module=$(DOC_MODULE) --html-dir=$(DESTDIR)$(HTML_DIR)
+ 
+ dist-hook:
+ 	(cd $(srcdir) ; tar cvf - html) | (cd $(distdir); tar xf -)
