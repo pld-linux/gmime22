@@ -1,100 +1,80 @@
-# Note that this is NOT a relocatable package
-%define ver      0.1.0
-%define prefix   /usr
-
-Summary: libGMIME library
-Name: libgmime
-Version: %ver
-Release: 1
-Copyright: LGPL
-Group: Development/Libraries
-Source: ftp://ftp.gnome.org/pub/GNOME/sources/libgmime/libgmime-%{ver}.tar.gz
-BuildRoot: /var/tmp/libgmime-%{PACKAGE_VERSION}-root
-
-URL: http://primates.helixcode.com/~fejj/GMIME/
-Prereq: /sbin/install-info
-Docdir: %{prefix}/doc
+Summary:	libGMIME library
+Name:		gmime
+Version:	0.1.0
+Release:	1
+License:	LGPL
+Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
+Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
+Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/libgmime/%{name}-%{version}.tar.gz
+Patch0:		%{name}-DESTDIR.patch
+URL:		http://primates.helixcode.com/~fejj/GMIME/
+BuildRequires:	automake
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This library allows you to manipulate MIME messages.
 
 %package devel
-Summary: Libraries, includes, etc to develop libgmime applications
-Group: Development/Libraries
-Requires: libgmime = %{version}
+Summary:	Libraries, includes, etc to develop libgmime applications
+Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
+Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name} = %{version}
 
 %description devel
-Libraries, include files, etc you can use to develop libgmime applications.
+Libraries, include files, etc you can use to develop libgmime
+applications.
 
+%package static
+Summary:	Static gmime libraries
+Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
+Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name}-devel = %{version}
 
-%changelog
-
-- Built release 0.1.0
+%description static
+Static gmime libraries.
 
 %prep
-%setup
+%setup -q
+%patch0 -p1
 
 %build
-# Needed for snapshot releases.
-if [ ! -f configure ]; then
-%ifarch alpha
-  CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --host=alpha-redhat-linux --prefix=%prefix --sysconfdir="/etc"
-%else
-  CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=%prefix --sysconfdir="/etc"
-%endif
-else
-%ifarch alpha
-  CFLAGS="$RPM_OPT_FLAGS" ./configure --host=alpha-redhat-linux --prefix=%prefix --sysconfdir="/etc"
-%else
-  CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%prefix --sysconfdir="/etc"
-%endif
-fi
-
-if [ "$SMP" != "" ]; then
-  (make "MAKE=make -k -j $SMP"; exit 0)
-  make
-else
-  make
-fi
+automake
+%configure
+make
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make prefix=$RPM_BUILD_ROOT%{prefix} install
-#
-# hack to get libgmime.so.0 too !
-# Get rid of it once deps to libgmime.so.0 have disapeared.
-#
-#if [ -f $RPM_BUILD_ROOT/%{prefix}/lib/libgmime.so.0.1.0 ]
-#then
-#   (cd $RPM_BUILD_ROOT/%{prefix}/lib/ ; cp libgmime.so.0.1.0 libgmime.so.0.99.0 ; ln -sf libgmime.so.0.99.0 libgmime.so.0)
-#fi
-#
-# another hack to get /usr/include/gnome-gmime/libgmime/
-#
-if [ -d $RPM_BUILD_ROOT/%{prefix}/include/gnome-gmime ]
-then
-    (cd $RPM_BUILD_ROOT/%{prefix}/include/gnome-gmime ; ln -sf . libgmime)
-fi
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+gzip -9nf AUTHORS ChangeLog NEWS README TODO
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig
-
+%post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
-
-%doc AUTHORS ChangeLog NEWS README COPYING COPYING.LIB TODO
-%{prefix}/lib/lib*.so.*
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*.so.*
 
 %files devel
-%defattr(-, root, root)
+%defattr(644,root,root,755)
+%doc *.gz
+%attr(755,root,root) %{_bindir}/gmime-config
+%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/*.sh
+%{_includedir}/*
 
-%{prefix}/lib/lib*.so
-%{prefix}/lib/*a
-%{prefix}/lib/*.sh
-%{prefix}/include/*
-%{prefix}/bin/gmime-config
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/lib*.a
