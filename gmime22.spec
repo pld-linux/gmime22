@@ -11,7 +11,6 @@ Patch0:		%{name}-link.patch
 URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
-# glib2-devel is needed for aclocal/autoconf call (m4 macros) and to build test programs
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	gtk-doc
 BuildRequires:	libtool
@@ -28,7 +27,8 @@ Ta biblioteka pozwala na manipulowanie wiadomo¶ciami MIME.
 Summary:	Header files to develop libgmime applications
 Summary(pl):	Pliki nag³ówkowe do tworzenia programów z u¿yciem libgmime
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
+Requires:	glib2-devel >= 2.0.0
 Requires:	gtk-doc-common
 
 %description devel
@@ -41,7 +41,7 @@ Pliki nag³ówkowe do tworzenia programów z u¿yciem libgmime.
 Summary:	Static gmime library
 Summary(pl):	Statyczna biblioteka gmime
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static gmime library.
