@@ -7,11 +7,12 @@ License:	LGPL
 Group:		Development/Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/gmime-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-am15.patch
 URL:		http://spruce.sourceforge.net/gmime
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool
 BuildRequires:	gtk-doc
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -49,14 +50,15 @@ Statyczne biblioteki gmime.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -rf missing
 %{__libtoolize}
 aclocal
 %{__autoconf}
-#%{__automake}
-CFLAGS="$CFLAGS -I /usr/X11R6/include"
+%{__automake}
+CFLAGS="%{rpmcflags} -I /usr/X11R6/include"
 %configure 
 %{__make}
 
