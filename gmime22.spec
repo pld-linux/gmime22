@@ -13,6 +13,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gtk-doc
 BuildRequires:	libtool
+BuilDrequires:	libunicode-devel >= 0.7-1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -58,7 +59,6 @@ rm -rf missing
 aclocal
 %{__autoconf}
 %{__automake}
-CFLAGS="%{rpmcflags} -I /usr/X11R6/include"
 %configure 
 %{__make}
 
