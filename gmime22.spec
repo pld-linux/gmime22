@@ -2,20 +2,25 @@ Summary:	libGMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
 Version:	1.90.0
-Release:	2
+Release:	3
 License:	LGPL
 Group:		Development/Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/gmime-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-am15.patch
 Patch2:		%{name}-cvs20020719.patch
-URL:		http://spruce.sourceforge.net/gmime
+Patch3:		%{name}-types.patch
+URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
+# glib2-devel is needed for aclocal/autoconf call (m4 macros) and to build test programs
+BuildRequires:	glib2-devel
 BuildRequires:	gtk-doc
 BuildRequires:	libtool
 BuilDrequires:	libunicode-devel >= 0.7-1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
 
 %description
 This library allows you to manipulate MIME messages.
@@ -28,6 +33,7 @@ Summary:	Libraries, includes, etc to develop libgmime applications
 Summary(pl):	Biblioteki, nag³ówki, itp. do tworzenia programów z libgmime
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	gtk-doc-common
 
 %description devel
 Libraries, include files, etc you can use to develop libgmime
@@ -54,21 +60,25 @@ Statyczne biblioteki gmime.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
-rm -rf missing
+rm -f missing
 %{__libtoolize}
 aclocal
 %{__autoconf}
 %{__automake}
-%configure 
+%configure \
+	--with-html-dir=%{_gtkdocdir}
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	HTML_DIR=%{_gtkdocdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -91,6 +101,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) %{_libdir}/pkgconfig/*.pc
 %{_includedir}/*
 %{_aclocaldir}/*
+%{_gtkdocdir}/*
 
 %files static
 %defattr(644,root,root,755)
