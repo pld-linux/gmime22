@@ -6,6 +6,7 @@ Release:	2
 License:	LGPL
 Group:		Development/Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/gmime-%{version}.tar.gz
+# Source0-md5:	cc580537d620fb29fc4aca66a73c4798
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-am15.patch
 Patch2:		%{name}-types.patch
