@@ -1,23 +1,18 @@
-diff -urN gmime-2.1.5.orig/configure.in gmime-2.1.5/configure.in
---- gmime-2.1.5.orig/configure.in	2004-05-23 13:13:09.738451600 +0200
-+++ gmime-2.1.5/configure.in	2004-05-23 13:14:19.489847776 +0200
-@@ -120,7 +120,7 @@
- dnl *** Checks for libnsl     ***
- dnl *****************************
+--- gmime-2.1.10/configure.in.orig	2005-01-11 22:36:39.000000000 +0100
++++ gmime-2.1.10/configure.in	2005-01-22 17:24:02.701878520 +0100
+@@ -184,13 +184,13 @@
+ dnl *** Checks for libsocket ***
+ dnl ****************************
+ LIBSOCKET=""
+-AC_CHECK_LIB(socket, getaddrinfo, LIBSOCKET="-lsocket -lnsl")
++AC_CHECK_FUNC(getaddrinfo,,[AC_CHECK_LIB(socket, getaddrinfo, LIBSOCKET="-lsocket -lnsl")])
+ 
+ dnl *************************
+ dnl *** Checks for libnsl ***
+ dnl *************************
  LIBNSL=""
--AC_CHECK_LIB(nsl, gethostbyname, LIBNSL="-lnsl")
-+AC_CHECK_FUNC(gethostbyname, ,[AC_CHECK_LIB(nsl, gethostbyname, LIBNSL="-lnsl")])
+-AC_CHECK_LIB(nsl, getaddrinfo, LIBNSL="-lnsl")
++AC_CHECK_FUNC(getaddrinfo,,[AC_CHECK_LIB(nsl, getaddrinfo, LIBNSL="-lnsl")])
  
- dnl Check for libiconv
- AM_ICONV()
---- gmime-2.1.5/gmime/Makefile.am.orig	2004-05-07 00:57:08.000000000 +0200
-+++ gmime-2.1.5/gmime/Makefile.am	2004-05-24 18:59:49.926371000 +0200
-@@ -124,7 +124,7 @@
- 	gmime-table-private.h		\
- 	gmime-charset-map-private.h
- 
--libgmime_2_0_la_LIBADD = $(top_builddir)/util/libutil.la
-+libgmime_2_0_la_LIBADD = $(top_builddir)/util/libutil.la $(GLIB_LIBS)
- libgmime_2_0_la_LDFLAGS = -version-info $(GMIME_VERSION_INFO)
- 
- gen_table_SOURCES = gen-table.c
+ dnl ****************************
+ dnl *** Enable Mono bindings ***
