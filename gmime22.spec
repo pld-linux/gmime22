@@ -1,23 +1,21 @@
+#
+# Conditional build:
 %bcond_without	dotnet	# without .net support
-
+#
 %ifarch alpha
 # mono still broken
 %undefine	with_dotnet
 %endif
-
 Summary:	GMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
-Version:	2.1.9
-Release:	5
+Version:	2.1.10
+Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.1/gmime-%{version}.tar.gz
-# Source0-md5:	8bd24a56d5f56be9150deb9840a0812a
-Source1:	%{name}-mono.tar.bz2
-# Source1-md5:	e8d865b5baac1d925ab8ab8068ee3473
+# Source0-md5:	4e82952bb0ca66f1b09fd64725bff9f8
 Patch0:		%{name}-link.patch
-Patch1:		%{name}-mono.patch
 URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -91,9 +89,8 @@ Development part of dotnet-gmime-sharp
 Czê¶æ dla programistów dotnet-gmime-sharp
 
 %prep
-%setup -q -a1
+%setup -q
 %patch0 -p1
-%patch1 -p0
 
 %build
 %{__libtoolize}
@@ -125,8 +122,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 
 %if %{with dotnet}
 %files -n dotnet-gmime-sharp
