@@ -129,6 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n dotnet-gmime-sharp-devel
 %defattr(644,root,root,755)
 %{_datadir}/gapi/*
+%{_pkgconfigdir}/gmime-sharp.pc
 %endif
 
 %files devel
@@ -137,7 +138,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 %attr(755,root,root) %{_libdir}/*.sh
-%{_pkgconfigdir}/*.pc
+%{_pkgconfigdir}/gmime-2.0.pc
 %{_includedir}/gmime-2.0
 %{_gtkdocdir}/*
 
