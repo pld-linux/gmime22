@@ -1,11 +1,11 @@
 Summary:	libGMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
-Version:	0.9.0
-Release:	1
+Version:	1.90.0
+Release:	0.1
 License:	LGPL
 Group:		Development/Libraries
-Source0:	http://spruce.sourceforge.net/gmime/sources/gmime-0.9.0.tar.gz
+Source0:	http://spruce.sourceforge.net/gmime/sources/gmime-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://spruce.sourceforge.net/gmime
 BuildRequires:	autoconf
@@ -56,7 +56,8 @@ rm -rf missing
 #aclocal
 # \%{__autoconf}
 # \%{__automake}
-%configure
+CFLAGS="$CFLAGS -I /usr/X11R6/include"
+%configure 
 %{__make}
 
 %install
@@ -64,8 +65,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-gzip -9nf AUTHORS ChangeLog NEWS README TODO
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -75,12 +74,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc NEWS*
+%doc NEWS
 %attr(755,root,root) %{_libdir}/lib*.so.*
 
 %files devel
 %defattr(644,root,root,755)
-%doc AUTHORS* ChangeLog* README* TODO*
+%doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/gmime-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
