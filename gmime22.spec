@@ -1,16 +1,17 @@
 Summary:	libGMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
-Version:	0.5.0
-Release:	2
+Version:	0.9.0
+Release:	1
 License:	LGPL
 Group:		Development/Libraries
-Source0:	http://www.xtorshun.org/gmime/sources/%{name}-%{version}.tar.gz
+Source0:	http://spruce.sourceforge.net/gmime/sources/gmime-0.9.0.tar.gz
 Patch0:		%{name}-DESTDIR.patch
-URL:		http://www.xtorshun.org/gmime/
+URL:		http://spruce.sourceforge.net/gmime
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
+BuildRequires:	gtk-doc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -51,10 +52,10 @@ Statyczne biblioteki gmime.
 
 %build
 rm -rf missing
-libtoolize --copy --force
-aclocal
-%{__autoconf}
-%{__automake}
+#libtoolize --copy --force
+#aclocal
+# \%{__autoconf}
+# \%{__automake}
 %configure
 %{__make}
 
