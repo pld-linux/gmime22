@@ -1,0 +1,9 @@
+--- gmime-2.1.11/mono/gmime-sharp.pc.in.orig	2004-11-16 21:21:54.000000000 +0100
++++ gmime-2.1.11/mono/gmime-sharp.pc.in	2005-02-10 22:32:13.370368991 +0100
+@@ -1,5 +1,4 @@
+-prefix=@prefix@
+-libdir=${prefix}/lib
++libdir=@libdir@
+ 
+ Name: gmime-sharp 
+ Description: .NET binding for GMime
