@@ -17,6 +17,7 @@ Patch0:		%{name}-DESTDIR.patch
 URL:		http://www.xtorshun.org/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -76,7 +77,7 @@ aclocal
 autoconf
 automake -a -c
 %configure
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
