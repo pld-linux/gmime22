@@ -2,12 +2,16 @@ Summary:	libGMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
 Version:	0.5.0
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Source0:	http://www.xtorshun.org/gmime/sources/%{name}-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://www.xtorshun.org/gmime/
@@ -23,10 +27,15 @@ Ta biblioteka pozwala na manipulowanie wiadomo╤ciami MIME.
 
 %package devel
 Summary:	Libraries, includes, etc to develop libgmime applications
+Summary(pl):	Biblioteki, nagЁСwki, itp. do tworzenia programСw z libgmime
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 
 %description devel
@@ -39,20 +48,30 @@ opartych o bibliotekЙ gmime.
 
 %package static
 Summary:	Static gmime libraries
+Summary(pl):	Statyczne biblioteki gmime
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 
 %description static
 Static gmime libraries.
+
+%description -l pl static
+Statyczne biblioteki gmime.
 
 %prep
 %setup -q
 %patch0 -p1
 
 %build
+rm -rf missing
+libtoolize --copy --force
 aclocal
 autoconf
 automake -a -c
