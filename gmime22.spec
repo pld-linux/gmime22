@@ -1,12 +1,12 @@
 Summary:	libGMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
-Version:	2.1.1
+Version:	2.1.5
 Release:	1
 License:	LGPL
 Group:		Libraries
-Source0:	http://spruce.sourceforge.net/gmime/sources/gmime-%{version}.tar.gz
-# Source0-md5:	4c5e2ee1d567d53761e11dfb7ce5fdad
+Source0:	http://spruce.sourceforge.net/gmime/sources/v2.1/gmime-%{version}.tar.gz
+# Source0-md5:	137c03e24401317c67feb647eb446eab
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-ipv6-fix.patch
 URL:		http://spruce.sourceforge.net/gmime/
@@ -53,7 +53,6 @@ Statyczna biblioteka gmime.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -83,6 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_bindir}/*
 
 %files devel
 %defattr(644,root,root,755)
