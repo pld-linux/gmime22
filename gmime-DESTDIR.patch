@@ -1,18 +1,18 @@
-diff -Nru gmime-0.1.0/doc/Makefile.am gmime-0.1.0.new/doc/Makefile.am
---- gmime-0.1.0/doc/Makefile.am	Wed Nov 15 00:22:52 2000
-+++ gmime-0.1.0.new/doc/Makefile.am	Thu Nov 23 00:56:15 2000
-@@ -35,10 +35,10 @@
+diff -Naur gmime-0.9.0.orig/doc/Makefile.in gmime-0.9.0/doc/Makefile.in
+--- gmime-0.9.0.orig/doc/Makefile.in	Wed May  1 03:58:52 2002
++++ gmime-0.9.0/doc/Makefile.in	Thu May 30 11:17:25 2002
+@@ -232,10 +232,10 @@
  	rm -rf sgml html $(DOC_MODULE)-decl-list.txt $(DOC_MODULE)-decl.txt 
  
  install-data-local:
--	install -d -m 0755 $(TARGET_DIR)
--	install -m 0644 $(srcdir)/html/*.html $(TARGET_DIR)
--	install -m 0644 $(srcdir)/html/index.sgml $(TARGET_DIR)
+-	$(INSTALL) -d -m 0755 $(TARGET_DIR)
+-	$(INSTALL_DATA) $(srcdir)/html/*.html $(TARGET_DIR)
+-	$(INSTALL_DATA) $(srcdir)/html/index.sgml $(TARGET_DIR)
 -	gtkdoc-fixxref --module=$(DOC_MODULE) --html-dir=$(HTML_DIR)
-+	install -d -m 0755 $(DESTDIR)$(TARGET_DIR)
-+	install -m 0644 $(srcdir)/html/*.html $(DESTDIR)$(TARGET_DIR)
-+	install -m 0644 $(srcdir)/html/index.sgml $(DESTDIR)$(TARGET_DIR)
-+#	gtkdoc-fixxref --module=$(DOC_MODULE) --html-dir=$(DESTDIR)$(HTML_DIR)
++	$(INSTALL) -d -m 0755 $(DESTDIR)$(TARGET_DIR)
++	$(INSTALL_DATA) $(srcdir)/html/*.html $(DESTDIR)$(TARGET_DIR)
++	$(INSTALL_DATA) $(srcdir)/html/index.sgml $(DESTDIR)$(TARGET_DIR)
++	gtkdoc-fixxref --module=$(DOC_MODULE) --html-dir=$(DESTDIR)$(HTML_DIR)
  
  dist-hook:
- 	(cd $(srcdir) ; tar cvf - html/*.html html/index.sgml) | (cd $(distdir); tar xf -)
+ 	(cd $(srcdir) ; tar cvf - html) | (cd $(distdir); tar xf -)
