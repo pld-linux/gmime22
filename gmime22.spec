@@ -1,4 +1,5 @@
 Summary:	libGMIME library
+Summary(pl):	Biblioteka GMIME
 Name:		gmime
 Version:	0.5.0
 Release:	1
@@ -17,6 +18,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 This library allows you to manipulate MIME messages.
 
+%description -l pl
+Ta biblioteka pozwala na manipulowanie wiadomo¶ciami MIME.
+
 %package devel
 Summary:	Libraries, includes, etc to develop libgmime applications
 Group:		Development/Libraries
@@ -28,6 +32,10 @@ Requires:	%{name} = %{version}
 %description devel
 Libraries, include files, etc you can use to develop libgmime
 applications.
+
+%description -l pl devel
+Bibliotek, pliki nag³ówkowe itp. potrzebne do tworzenia programów
+opartych o bibliotekê gmime.
 
 %package static
 Summary:	Static gmime libraries
