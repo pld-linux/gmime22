@@ -2,7 +2,7 @@ Summary:	libGMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
 Version:	1.90.0
-Release:	0.2
+Release:	1
 License:	LGPL
 Group:		Development/Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/gmime-%{version}.tar.gz
@@ -52,10 +52,10 @@ Statyczne biblioteki gmime.
 
 %build
 rm -rf missing
-#libtoolize --copy --force
-#aclocal
-# \%{__autoconf}
-# \%{__automake}
+%{__libtoolize}
+aclocal
+%{__autoconf}
+#%{__automake}
 CFLAGS="$CFLAGS -I /usr/X11R6/include"
 %configure 
 %{__make}
