@@ -1,12 +1,12 @@
 Summary:	libGMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
-Version:	2.1.0
+Version:	2.1.1
 Release:	1
 License:	LGPL
-Group:		Development/Libraries
+Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/gmime-%{version}.tar.gz
-# Source0-md5:	dba1e7c39b3a7274c485aa81069b5edf
+# Source0-md5:	4c5e2ee1d567d53761e11dfb7ce5fdad
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-ipv6-fix.patch
 URL:		http://spruce.sourceforge.net/gmime/
@@ -26,31 +26,29 @@ This library allows you to manipulate MIME messages.
 Ta biblioteka pozwala na manipulowanie wiadomo¶ciami MIME.
 
 %package devel
-Summary:	Libraries, includes, etc to develop libgmime applications
-Summary(pl):	Biblioteki, nag³ówki, itp. do tworzenia programów z libgmime
+Summary:	Header files to develop libgmime applications
+Summary(pl):	Pliki nag³ówkowe do tworzenia programów z u¿yciem libgmime
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	gtk-doc-common
 
 %description devel
-Libraries, include files, etc you can use to develop libgmime
-applications.
+Header files develop libgmime applications.
 
 %description devel -l pl
-Bibliotek, pliki nag³ówkowe itp. potrzebne do tworzenia programów
-opartych o bibliotekê gmime.
+Pliki nag³ówkowe do tworzenia programów z u¿yciem libgmime.
 
 %package static
-Summary:	Static gmime libraries
-Summary(pl):	Statyczne biblioteki gmime
+Summary:	Static gmime library
+Summary(pl):	Statyczna biblioteka gmime
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}
 
 %description static
-Static gmime libraries.
+Static gmime library.
 
 %description static -l pl
-Statyczne biblioteki gmime.
+Statyczna biblioteka gmime.
 
 %prep
 %setup -q
