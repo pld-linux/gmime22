@@ -1,26 +1,23 @@
 Summary:	libGMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
-Version:	1.90.1
-Release:	2
+Version:	2.1.0
+Release:	1
 License:	LGPL
 Group:		Development/Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/gmime-%{version}.tar.gz
-# Source0-md5:	cc580537d620fb29fc4aca66a73c4798
-Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-am15.patch
-Patch2:		%{name}-types.patch
+# Source0-md5:	dba1e7c39b3a7274c485aa81069b5edf
+Patch0:		%{name}-link.patch
+Patch1:		%{name}-ipv6-fix.patch
 URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
 # glib2-devel is needed for aclocal/autoconf call (m4 macros) and to build test programs
-BuildRequires:	glib2-devel
+BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	gtk-doc
 BuildRequires:	libtool
-BuilDrequires:	libunicode-devel >= 0.7-1
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
 
 %description
 This library allows you to manipulate MIME messages.
@@ -59,15 +56,14 @@ Statyczne biblioteki gmime.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
-rm -f missing
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
+	--enable-ipv6 \
 	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
@@ -87,19 +83,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc NEWS
-%attr(755,root,root) %{_libdir}/lib*.so.*
+%doc AUTHORS ChangeLog NEWS README TODO
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/gmime-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 %attr(755,root,root) %{_libdir}/*.sh
-%attr(644,root,root) %{_libdir}/pkgconfig/*.pc
-%{_includedir}/*
-%{_aclocaldir}/*
+%{_pkgconfigdir}/*.pc
+%{_includedir}/gmime-2.0
 %{_gtkdocdir}/*
 
 %files static

@@ -1,0 +1,25 @@
+--- gmime-2.1.0/configure.in.orig	2003-06-26 05:53:28.000000000 +0200
++++ gmime-2.1.0/configure.in	2003-09-05 08:24:45.385916944 +0200
+@@ -136,7 +136,7 @@
+ dnl *** Checks for libnsl     ***
+ dnl *****************************
+ LIBNSL=""
+-AC_CHECK_LIB(nsl, gethostbyname, LIBNSL="-lnsl")
++AC_CHECK_FUNC(gethostbyname, , [AC_CHECK_LIB(nsl, gethostbyname, LIBNSL="-lnsl")])
+ 
+ dnl Check for libiconv
+ AM_ICONV()
+--- gmime-2.1.0/gmime/Makefile.am.orig	2003-08-09 09:09:06.000000000 +0200
++++ gmime-2.1.0/gmime/Makefile.am	2003-09-05 18:37:39.990327304 +0200
+@@ -133,9 +133,10 @@
+ 	gmime-charset-map-private.h
+ 
+ libgmime_2_0_la_LDFLAGS = -version-info $(GMIME_VERSION_INFO)
++libgmime_2_0_la_LIBADD = $(GLIB_LIBS)
+ 
+ DEPS = $(top_builddir)/libgmime-2.0.la
+-LDADDS = $(top_builddir)/libgmime-2.0.la $(GLIB_LIBS)
++LDADDS = $(top_builddir)/libgmime-2.0.la
+ 
+ gen_table_SOURCES = gen-table.c
+ gen_table_LDFLAGS = 
