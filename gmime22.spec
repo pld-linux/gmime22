@@ -1,5 +1,10 @@
 %bcond_without	dotnet	# without .net support
 
+%ifarch alpha
+# mono still broken
+%undefine	with_dotnet
+%endif
+
 Summary:	GMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
@@ -22,11 +27,6 @@ BuildRequires:	libtool
 BuildRequires:	pkgconfig
 %{?with_dotnet:BuildRequires:   mono-csharp >= 0.95}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%ifarch alpha
-# mono still broken
-%undefine	with_dotnet
-%endif
 
 %description
 This library allows you to manipulate MIME messages.
