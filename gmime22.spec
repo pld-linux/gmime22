@@ -2,7 +2,7 @@ Summary:	libGMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
 Version:	1.90.0
-Release:	0.1
+Release:	0.2
 License:	LGPL
 Group:		Development/Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/gmime-%{version}.tar.gz
@@ -84,6 +84,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
 %attr(755,root,root) %{_libdir}/*.sh
+%attr(644,root,root) %{_libdir}/pkgconfig/*.pc
 %{_includedir}/*
 %{_aclocaldir}/*
 
