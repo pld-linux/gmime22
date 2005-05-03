@@ -2,15 +2,11 @@
 # Conditional build:
 %bcond_without	dotnet	# without .net support
 #
-%ifarch alpha
-# mono still broken
-%undefine	with_dotnet
-%endif
 Summary:	GMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
 Version:	2.1.14
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.1/gmime-%{version}.tar.gz
