@@ -5,19 +5,20 @@
 Summary:	GMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
-Version:	2.1.14
-Release:	2
+Version:	2.1.15
+Release:	0.1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.1/gmime-%{version}.tar.gz
-# Source0-md5:	bf5c74ddaf6bc5e06d9f9abc423ca4db
+# Source0-md5:	c6df963c6e502f2da57ebb33143b40af
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-libdir.patch
 URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	glib2-devel >= 2.0.0
-BuildRequires:	gtk-doc >= 1.0
+# disabled by default, broken
+#BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
@@ -133,8 +134,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n dotnet-gmime-sharp-devel
 %defattr(644,root,root,755)
 %{_datadir}/gapi/*
-%dir %{_libdir}/mono/gmime-sharp
-%{_libdir}/mono/gmime-sharp/*
+%{_libdir}/mono/gmime-sharp
 %{_pkgconfigdir}/gmime-sharp.pc
 %endif
 
@@ -146,7 +146,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/*.sh
 %{_pkgconfigdir}/gmime-2.0.pc
 %{_includedir}/gmime-2.0
-%{_gtkdocdir}/*
+#%%{_gtkdocdir}/*
 
 %files static
 %defattr(644,root,root,755)
