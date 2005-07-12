@@ -6,7 +6,7 @@ Summary:	GMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
 Version:	2.1.15
-Release:	0.1
+Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.1/gmime-%{version}.tar.gz
@@ -17,7 +17,7 @@ URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	glib2-devel >= 2.0.0
-# disabled by default, broken
+# disabled by default, broken and very incomplete
 #BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
