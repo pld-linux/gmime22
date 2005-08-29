@@ -5,12 +5,12 @@
 Summary:	GMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
-Version:	2.1.15
+Version:	2.1.16
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.1/gmime-%{version}.tar.gz
-# Source0-md5:	c6df963c6e502f2da57ebb33143b40af
+# Source0-md5:	ca1992fba086c5dd0e7523b5eab4057c
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-libdir.patch
 URL:		http://spruce.sourceforge.net/gmime/
@@ -23,8 +23,8 @@ BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
 %if %{with dotnet}
-BuildRequires:	dotnet-gtk-sharp-devel >= 1.0.6
-BuildRequires:	mono-csharp >= 1.0.0
+BuildRequires:	dotnet-gtk-sharp2-devel >= 1.9.5
+BuildRequires:	mono-csharp >= 1.1.0
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -65,8 +65,8 @@ Statyczna biblioteka gmime.
 Summary:	.NET language bindings for gmime
 Summary(pl):	Wi±zania gmime dla .NET
 Group:		Development/Libraries
-Requires:	dotnet-gtk-sharp >= 1.0.6
-Requires:	mono >= 1.0.0
+Requires:	dotnet-gtk-sharp2 >= 1.9.5
+Requires:	mono >= 1.1.0
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n dotnet-gmime-sharp
@@ -128,13 +128,13 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with dotnet}
 %files -n dotnet-gmime-sharp
 %defattr(644,root,root,755)
-%dir %{_libdir}/mono/gac/gmime-sharp
-%{_libdir}/mono/gac/gmime-sharp
+%dir %{_prefix}/lib/mono/gac/gmime-sharp
+%{_prefix}/lib/mono/gac/gmime-sharp
 
 %files -n dotnet-gmime-sharp-devel
 %defattr(644,root,root,755)
-%{_datadir}/gapi/*
-%{_libdir}/mono/gmime-sharp
+%{_datadir}/gapi-2.0/*
+%{_prefix}/lib/mono/gmime-sharp
 %{_pkgconfigdir}/gmime-sharp.pc
 %endif
 
@@ -146,7 +146,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/*.sh
 %{_pkgconfigdir}/gmime-2.0.pc
 %{_includedir}/gmime-2.0
-#%%{_gtkdocdir}/*
+%{_gtkdocdir}/gmime
 
 %files static
 %defattr(644,root,root,755)
