@@ -1,4 +1,6 @@
 #
+%include	/usr/lib/rpm/macros.mono
+#
 # Conditional build:
 %bcond_without	dotnet	# without .net support
 #
@@ -6,7 +8,7 @@ Summary:	GMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
 Version:	2.1.16
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.1/gmime-%{version}.tar.gz
