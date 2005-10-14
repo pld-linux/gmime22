@@ -7,12 +7,12 @@
 Summary:	GMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
-Version:	2.1.16
-Release:	2
+Version:	2.1.17
+Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.1/gmime-%{version}.tar.gz
-# Source0-md5:	ca1992fba086c5dd0e7523b5eab4057c
+# Source0-md5:	9a3075219597d461f153c4c34056f553
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-libdir.patch
 URL:		http://spruce.sourceforge.net/gmime/
