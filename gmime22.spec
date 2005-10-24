@@ -1,20 +1,21 @@
 #
-%include	/usr/lib/rpm/macros.mono
-#
 # Conditional build:
 %bcond_without	dotnet	# without .net support
 #
+%ifnarch %{ix86} %{x8664} arm hppa ppc s390 s390x
+%undefine	with_dotnet
+%endif
+%include	/usr/lib/rpm/macros.mono
 Summary:	GMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
 Version:	2.1.17
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.1/gmime-%{version}.tar.gz
 # Source0-md5:	9a3075219597d461f153c4c34056f553
 Patch0:		%{name}-link.patch
-Patch1:		%{name}-libdir.patch
 URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -92,7 +93,6 @@ Czê¶æ dla programistów dotnet-gmime-sharp
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
