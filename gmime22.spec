@@ -5,7 +5,7 @@
 %ifarch i386 alpha sparc sparc64
 %undefine	with_dotnet
 %endif
-%include	/usr/lib/rpm/macros.mono
+%{?with_dotnet:	%include	/usr/lib/rpm/macros.mono}
 Summary:	GMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
