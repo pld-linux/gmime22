@@ -10,7 +10,7 @@ Summary:	GMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
 Version:	2.1.19
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.1/gmime-%{version}.tar.gz
@@ -19,14 +19,14 @@ Patch0:		%{name}-link.patch
 URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	glib2-devel >= 2.0.0
+BuildRequires:	glib2-devel >= 1:2.11.4
 # disabled by default, broken and very incomplete
 #BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
 %if %{with dotnet}
-BuildRequires:	dotnet-gtk-sharp2-devel >= 1.9.5
+BuildRequires:	dotnet-gtk-sharp2-devel >= 2.8.2
 BuildRequires:	mono-csharp >= 1.1.0
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -42,7 +42,7 @@ Summary:	Header files to develop libgmime applications
 Summary(pl):	Pliki nag³ówkowe do tworzenia programów z u¿yciem libgmime
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 2.0.0
+Requires:	glib2-devel >= 1:2.11.4
 Requires:	gtk-doc-common
 Requires:	zlib-devel
 
@@ -68,8 +68,8 @@ Statyczna biblioteka gmime.
 Summary:	.NET language bindings for gmime
 Summary(pl):	Wi±zania gmime dla .NET
 Group:		Development/Libraries
-Requires:	dotnet-gtk-sharp2 >= 1.9.5
-Requires:	mono >= 1.1.0
+Requires:	dotnet-gtk-sharp2 >= 2.8.2
+Requires:	mono >= 1.1.13.8
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n dotnet-gmime-sharp
