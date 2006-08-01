@@ -10,7 +10,7 @@ Summary:	GMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
 Version:	2.1.19
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.1/gmime-%{version}.tar.gz
@@ -19,15 +19,15 @@ Patch0:		%{name}-link.patch
 URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	glib2-devel >= 1:2.11.4
+BuildRequires:	glib2-devel >= 1:2.12.1
 # disabled by default, broken and very incomplete
 #BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
 %if %{with dotnet}
-BuildRequires:	dotnet-gtk-sharp2-devel >= 2.8.2
-BuildRequires:	mono-csharp >= 1.1.0
+BuildRequires:	dotnet-gtk-sharp2-devel >= 2.8.3
+BuildRequires:	mono-csharp >= 1.1.16.1
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
