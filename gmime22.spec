@@ -68,7 +68,7 @@ Statyczna biblioteka gmime.
 Summary:	.NET language bindings for gmime
 Summary(pl):	Wi±zania gmime dla .NET
 Group:		Development/Libraries
-Requires:	dotnet-gtk-sharp2 >= 2.9.2
+Requires:	dotnet-gtk-sharp2 >= 2.9.0
 Requires:	mono >= 1.1.16.1
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
