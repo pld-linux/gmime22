@@ -7,7 +7,7 @@
 %endif
 %{?with_dotnet:	%include	/usr/lib/rpm/macros.mono}
 Summary:	GMIME library
-Summary(pl):	Biblioteka GMIME
+Summary(pl.UTF-8):   Biblioteka GMIME
 Name:		gmime
 Version:	2.2.3
 Release:	1
@@ -34,12 +34,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 This library allows you to manipulate MIME messages.
 
-%description -l pl
-Ta biblioteka pozwala na manipulowanie wiadomo¶ciami MIME.
+%description -l pl.UTF-8
+Ta biblioteka pozwala na manipulowanie wiadomoÅ›ciami MIME.
 
 %package devel
 Summary:	Header files to develop libgmime applications
-Summary(pl):	Pliki nag³ówkowe do tworzenia programów z u¿yciem libgmime
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe do tworzenia programÃ³w z uÅ¼yciem libgmime
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.11.4
@@ -49,24 +49,24 @@ Requires:	zlib-devel
 %description devel
 Header files develop libgmime applications.
 
-%description devel -l pl
-Pliki nag³ówkowe do tworzenia programów z u¿yciem libgmime.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe do tworzenia programÃ³w z uÅ¼yciem libgmime.
 
 %package static
 Summary:	Static gmime library
-Summary(pl):	Statyczna biblioteka gmime
+Summary(pl.UTF-8):   Statyczna biblioteka gmime
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static gmime library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka gmime.
 
 %package -n dotnet-gmime-sharp
 Summary:	.NET language bindings for gmime
-Summary(pl):	Wi±zania gmime dla .NET
+Summary(pl.UTF-8):   WiÄ…zania gmime dla .NET
 Group:		Development/Libraries
 Requires:	dotnet-gtk-sharp2 >= 2.9.0
 Requires:	mono >= 1.1.16.1
@@ -75,20 +75,20 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 %description -n dotnet-gmime-sharp
 .NET language bindings for gmime
 
-%description -n dotnet-gmime-sharp -l pl
-Wi±zania gmime dla .NET
+%description -n dotnet-gmime-sharp -l pl.UTF-8
+WiÄ…zania gmime dla .NET
 
 %package -n dotnet-gmime-sharp-devel
 Summary:	Development part of dotnet-gmime-sharp
-Summary(pl):	Czê¶æ dla programistów dotnet-gmime-sharp
+Summary(pl.UTF-8):   CzÄ™Å›Ä‡ dla programistÃ³w dotnet-gmime-sharp
 Group:		Development/Libraries
 Requires:	dotnet-%{name}-sharp = %{epoch}:%{version}-%{release}
 
 %description -n dotnet-gmime-sharp-devel
 Development part of dotnet-gmime-sharp
 
-%description -n dotnet-gmime-sharp-devel -l pl
-Czê¶æ dla programistów dotnet-gmime-sharp
+%description -n dotnet-gmime-sharp-devel -l pl.UTF-8
+CzÄ™Å›Ä‡ dla programistÃ³w dotnet-gmime-sharp
 
 %prep
 %setup -q
