@@ -7,7 +7,7 @@
 %endif
 %{?with_dotnet:	%include	/usr/lib/rpm/macros.mono}
 Summary:	GMIME library
-Summary(pl.UTF-8):   Biblioteka GMIME
+Summary(pl.UTF-8):	Biblioteka GMIME
 Name:		gmime
 Version:	2.2.3
 Release:	1
@@ -39,7 +39,7 @@ Ta biblioteka pozwala na manipulowanie wiadomościami MIME.
 
 %package devel
 Summary:	Header files to develop libgmime applications
-Summary(pl.UTF-8):   Pliki nagłówkowe do tworzenia programów z użyciem libgmime
+Summary(pl.UTF-8):	Pliki nagłówkowe do tworzenia programów z użyciem libgmime
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.11.4
@@ -54,7 +54,7 @@ Pliki nagłówkowe do tworzenia programów z użyciem libgmime.
 
 %package static
 Summary:	Static gmime library
-Summary(pl.UTF-8):   Statyczna biblioteka gmime
+Summary(pl.UTF-8):	Statyczna biblioteka gmime
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -66,7 +66,7 @@ Statyczna biblioteka gmime.
 
 %package -n dotnet-gmime-sharp
 Summary:	.NET language bindings for gmime
-Summary(pl.UTF-8):   Wiązania gmime dla .NET
+Summary(pl.UTF-8):	Wiązania gmime dla .NET
 Group:		Development/Libraries
 Requires:	dotnet-gtk-sharp2 >= 2.9.0
 Requires:	mono >= 1.1.16.1
@@ -80,7 +80,7 @@ Wiązania gmime dla .NET
 
 %package -n dotnet-gmime-sharp-devel
 Summary:	Development part of dotnet-gmime-sharp
-Summary(pl.UTF-8):   Część dla programistów dotnet-gmime-sharp
+Summary(pl.UTF-8):	Część dla programistów dotnet-gmime-sharp
 Group:		Development/Libraries
 Requires:	dotnet-%{name}-sharp = %{epoch}:%{version}-%{release}
 
