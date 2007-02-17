@@ -24,6 +24,7 @@ BuildRequires:	glib2-devel >= 2.0.0
 #BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	sed >= 4.0
 BuildRequires:	zlib-devel
 %if %{with dotnet}
 BuildRequires:	dotnet-gtk-sharp2-devel >= 1.9.5
@@ -93,6 +94,8 @@ Czê¶æ dla programistów dotnet-gmime-sharp
 %prep
 %setup -q
 %patch0 -p1
+
+sed -i -e 's/XML_SOURCES/SOURCES_XML/' mono/Makefile.am
 
 %build
 %{__libtoolize}
