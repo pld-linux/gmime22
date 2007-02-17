@@ -98,6 +98,7 @@ Czê¶æ dla programistów dotnet-gmime-sharp
 sed -i -e 's/XML_SOURCES/SOURCES_XML/' mono/Makefile.am
 
 %build
+touch config.rpath
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
