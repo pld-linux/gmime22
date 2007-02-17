@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_without	dotnet	# without .net support
 #
-%ifarch i386 alpha sparc sparc64
+%ifarch i386
 %undefine	with_dotnet
 %endif
 %include	/usr/lib/rpm/macros.mono
@@ -10,7 +10,7 @@ Summary:	GMIME library
 Summary(pl):	Biblioteka GMIME
 Name:		gmime
 Version:	2.1.19
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.1/gmime-%{version}.tar.gz
