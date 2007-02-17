@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_without	dotnet	# without .net support
 #
-%ifarch i386 alpha sparc sparc64
+%ifarch i386
 %undefine	with_dotnet
 %endif
 %{?with_dotnet:	%include	/usr/lib/rpm/macros.mono}
