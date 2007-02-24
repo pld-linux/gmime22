@@ -131,7 +131,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with dotnet}
 %files -n dotnet-gmime-sharp
 %defattr(644,root,root,755)
-%dir %{_prefix}/lib/mono/gac/gmime-sharp
 %{_prefix}/lib/mono/gac/gmime-sharp
 
 %files -n dotnet-gmime-sharp-devel
