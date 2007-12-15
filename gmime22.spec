@@ -9,12 +9,12 @@
 Summary:	GMIME library
 Summary(pl.UTF-8):	Biblioteka GMIME
 Name:		gmime
-Version:	2.2.9
+Version:	2.2.11
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.2/gmime-%{version}.tar.gz
-# Source0-md5:	5d97fb3e70558fa5f3623eb0b608be34
+# Source0-md5:	2dd3665494feeef3e7c881faa40d6099
 Patch0:		%{name}-link.patch
 URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
@@ -101,7 +101,7 @@ touch config.rpath
 %{__autoconf}
 %{__automake}
 %configure \
-	--enable-ipv6 \
+	--enable-largefile \
 	--%{?with_dotnet:enable}%{!?with_dotnet:disable}-mono \
 	--with-html-dir=%{_gtkdocdir}
 
@@ -124,9 +124,24 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%doc AUTHORS ChangeLog README TODO
+%attr(755,root,root) %{_libdir}/libgmime-2.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgmime-2.0.so.2
+
+%files devel
+%defattr(644,root,root,755)
+%doc PORTING
+%attr(755,root,root) %{_bindir}/gmime-config
+%attr(755,root,root) %{_libdir}/libgmime-2.0.so
+%{_libdir}/libgmime-2.0.la
+%attr(755,root,root) %{_libdir}/gmimeConf.sh
+%{_pkgconfigdir}/gmime-2.0.pc
+%{_includedir}/gmime-2.0
+%{_gtkdocdir}/gmime
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libgmime-2.0.a
 
 %if %{with dotnet}
 %files -n dotnet-gmime-sharp
@@ -135,21 +150,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n dotnet-gmime-sharp-devel
 %defattr(644,root,root,755)
-%{_datadir}/gapi-2.0/*
 %{_prefix}/lib/mono/gmime-sharp
+%{_datadir}/gapi-2.0/gmime-api.xml
 %{_pkgconfigdir}/gmime-sharp.pc
 %endif
-
-%files devel
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/gmime-config
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%attr(755,root,root) %{_libdir}/*.sh
-%{_pkgconfigdir}/gmime-2.0.pc
-%{_includedir}/gmime-2.0
-%{_gtkdocdir}/gmime
-
-%files static
-%defattr(644,root,root,755)
-%{_libdir}/lib*.a
