@@ -5,16 +5,16 @@
 %ifarch i386
 %undefine	with_dotnet
 %endif
-%{?with_dotnet:	%include	/usr/lib/rpm/macros.mono}
+%{?with_dotnet:%include	/usr/lib/rpm/macros.mono}
 Summary:	GMIME library
 Summary(pl.UTF-8):	Biblioteka GMIME
 Name:		gmime
-Version:	2.2.21
-Release:	2
-License:	GPL v2+
+Version:	2.2.22
+Release:	1
+License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://spruce.sourceforge.net/gmime/sources/v2.2/gmime-%{version}.tar.gz
-# Source0-md5:	5dca78fabb4808ba3e536a380f6c10d5
+# Source0-md5:	c5c2cd8c94dc26b18c5524d70eb2971d
 Patch0:		%{name}-link.patch
 URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
@@ -68,9 +68,9 @@ Statyczna biblioteka gmime.
 Summary:	.NET language bindings for gmime
 Summary(pl.UTF-8):	Wiązania gmime dla .NET
 Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
 Requires:	dotnet-gtk-sharp2 >= 2.9.0
 Requires:	mono >= 1.1.16.1
-Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n dotnet-gmime-sharp
 .NET language bindings for gmime
@@ -82,7 +82,7 @@ Wiązania gmime dla .NET
 Summary:	Development part of dotnet-gmime-sharp
 Summary(pl.UTF-8):	Część dla programistów dotnet-gmime-sharp
 Group:		Development/Libraries
-Requires:	dotnet-%{name}-sharp = %{epoch}:%{version}-%{release}
+Requires:	dotnet-%{name}-sharp = %{version}-%{release}
 
 %description -n dotnet-gmime-sharp-devel
 Development part of dotnet-gmime-sharp
