@@ -8,19 +8,21 @@
 %{?with_dotnet:%include	/usr/lib/rpm/macros.mono}
 Summary:	GMIME library
 Summary(pl.UTF-8):	Biblioteka GMIME
-Name:		gmime
-Version:	2.4.2
+Name:		gmime22
+Version:	2.2.23
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gmime/2.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	070d61056d20318dadc0465b61fd1d27
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gmime/2.2/gmime-%{version}.tar.bz2
+# Source0-md5:	9f254eb989e0506243da6fde7f164998
 Patch0:		%{name}-link.patch
+Patch1:		%{name}-dont-delay-sign.patch
 URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	glib2-devel >= 1:2.12.1
-BuildRequires:	gtk-doc >= 1.8
+# disabled by default, broken and very incomplete
+#BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
@@ -28,6 +30,7 @@ BuildRequires:	zlib-devel
 BuildRequires:	dotnet-gtk-sharp2-devel >= 2.9.0
 BuildRequires:	mono-csharp >= 1.1.16.1
 %endif
+Obsoletes:	gmime < 2.2.23
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -43,6 +46,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.12.1
 Requires:	zlib-devel
+Obsoletes:	gmime-devel < 2.2.23
 
 %description devel
 Header files develop libgmime applications.
@@ -55,6 +59,7 @@ Summary:	Static gmime library
 Summary(pl.UTF-8):	Statyczna biblioteka gmime
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
+Obsoletes:	gmime-static < 2.2.23
 
 %description static
 Static gmime library.
@@ -74,41 +79,44 @@ gmime library API documentation.
 %description apidocs -l pl.UTF-8
 Dokumentacja API biblioteki gmime.
 
-%package -n dotnet-gmime-sharp
+%package -n dotnet-gmime22-sharp
 Summary:	.NET language bindings for gmime
 Summary(pl.UTF-8):	Wiązania gmime dla .NET
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	dotnet-gtk-sharp2 >= 2.9.0
 Requires:	mono >= 1.1.16.1
+Obsoletes:	dotnet-gmime-sharp < 2.2.23
 
-%description -n dotnet-gmime-sharp
-.NET language bindings for gmime
+%description -n dotnet-gmime22-sharp
+.NET language bindings for gmime.
 
-%description -n dotnet-gmime-sharp -l pl.UTF-8
-Wiązania gmime dla .NET
+%description -n dotnet-gmime22-sharp -l pl.UTF-8
+Wiązania gmime dla .NET.
 
-%package -n dotnet-gmime-sharp-devel
+%package -n dotnet-gmime22-sharp-devel
 Summary:	Development part of dotnet-gmime-sharp
 Summary(pl.UTF-8):	Część dla programistów dotnet-gmime-sharp
 Group:		Development/Libraries
 Requires:	dotnet-%{name}-sharp = %{version}-%{release}
+Obsoletes:	dotnet-gmime-sharp-devel < 2.2.23
 
-%description -n dotnet-gmime-sharp-devel
+%description -n dotnet-gmime22-sharp-devel
 Development part of dotnet-gmime-sharp.
 
-%description -n dotnet-gmime-sharp-devel -l pl.UTF-8
+%description -n dotnet-gmime22-sharp-devel -l pl.UTF-8
 Część dla programistów dotnet-gmime-sharp.
 
 %prep
-%setup -q
+%setup -q -n gmime-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
+touch config.rpath
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
-%{__autoheader}
 %{__automake}
 %configure \
 	--enable-largefile \
@@ -122,7 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	HTML_DIR=%{_gtkdocdir}/gmime
+	HTML_DIR=%{_gtkdocdir}
 
 rm -f $RPM_BUILD_ROOT%{_bindir}/uu{de,en}code
 
@@ -135,32 +143,35 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO
-%attr(755,root,root) %{_libdir}/libgmime-2.4.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgmime-2.4.so.2
+%attr(755,root,root) %{_libdir}/libgmime-2.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgmime-2.0.so.2
 
 %files devel
 %defattr(644,root,root,755)
 %doc PORTING
-%attr(755,root,root) %{_libdir}/libgmime-2.4.so
-%{_libdir}/libgmime-2.4.la
-%{_pkgconfigdir}/gmime-2.4.pc
-%{_includedir}/gmime-2.4
+%attr(755,root,root) %{_bindir}/gmime-config
+%attr(755,root,root) %{_libdir}/libgmime-2.0.so
+%{_libdir}/libgmime-2.0.la
+%attr(755,root,root) %{_libdir}/gmimeConf.sh
+%{_pkgconfigdir}/gmime-2.0.pc
+%{_includedir}/gmime-2.0
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libgmime-2.4.a
+%{_libdir}/libgmime-2.0.a
 
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/gmime
 
 %if %{with dotnet}
-%files -n dotnet-gmime-sharp
+%files -n dotnet-gmime22-sharp
 %defattr(644,root,root,755)
 %{_prefix}/lib/mono/gac/gmime-sharp
 
-%files -n dotnet-gmime-sharp-devel
+%files -n dotnet-gmime22-sharp-devel
 %defattr(644,root,root,755)
-%{_prefix}/lib/mono/gmime-sharp-2.4
-%{_pkgconfigdir}/gmime-sharp-2.4.pc
+%{_prefix}/lib/mono/gmime-sharp
+%{_datadir}/gapi-2.0/gmime-api.xml
+%{_pkgconfigdir}/gmime-sharp.pc
 %endif
