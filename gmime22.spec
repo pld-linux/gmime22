@@ -20,9 +20,10 @@ Patch1:		%{name}-dont-delay-sign.patch
 URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.12.1
-# disabled by default, broken and very incomplete
-#BuildRequires:	gtk-doc >= 1.0
+BuildRequires:	gtk-doc >= 1.0
+BuildRequires:	gtk-doc-automake
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
