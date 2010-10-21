@@ -9,12 +9,12 @@
 Summary:	GMIME library
 Summary(pl.UTF-8):	Biblioteka GMIME
 Name:		gmime22
-Version:	2.2.23
+Version:	2.2.26
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gmime/2.2/gmime-%{version}.tar.bz2
-# Source0-md5:	9f254eb989e0506243da6fde7f164998
+# Source0-md5:	fed7c1beab58f5e5f4831c266fe974aa
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-dont-delay-sign.patch
 URL:		http://spruce.sourceforge.net/gmime/
