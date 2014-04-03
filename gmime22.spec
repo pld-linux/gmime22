@@ -1,16 +1,17 @@
 #
 # Conditional build:
 %bcond_without	dotnet	# without .net support
-#
+
 %ifarch i386
 %undefine	with_dotnet
 %endif
+
 %{?with_dotnet:%include	/usr/lib/rpm/macros.mono}
 Summary:	GMIME library
 Summary(pl.UTF-8):	Biblioteka GMIME
 Name:		gmime22
 Version:	2.2.27
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gmime/2.2/gmime-%{version}.tar.bz2
@@ -73,6 +74,9 @@ Summary:	gmime library API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki gmime
 Group:		Documentation
 Requires:	gtk-doc-common
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 gmime library API documentation.
