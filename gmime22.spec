@@ -22,7 +22,7 @@ Patch2:		format-security.patch
 URL:		http://spruce.sourceforge.net/gmime/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.12.1
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	gtk-doc-automake
