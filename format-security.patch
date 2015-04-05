@@ -1,0 +1,47 @@
+--- gmime-2.2.27/gmime/gmime-gpg-context.c~	2011-03-07 18:09:21.000000000 +0000
++++ gmime-2.2.27/gmime/gmime-gpg-context.c	2015-04-05 08:50:06.913345576 +0000
+@@ -1504,7 +1504,7 @@
+ 		diagnostics = gpg_ctx_get_diagnostics (gpg);
+ 		errno = save;
+ 		
+-		g_set_error (err, GMIME_ERROR, errno, diagnostics);
++		g_set_error (err, GMIME_ERROR, errno, "%s", diagnostics);
+ 		gpg_ctx_free (gpg);
+ 		
+ 		return -1;
+@@ -1678,7 +1678,7 @@
+ 		diagnostics = gpg_ctx_get_diagnostics (gpg);
+ 		errno = save;
+ 		
+-		g_set_error (err, GMIME_ERROR, errno, diagnostics);
++		g_set_error (err, GMIME_ERROR, errno, "%s", diagnostics);
+ 		gpg_ctx_free (gpg);
+ 		
+ 		return -1;
+@@ -1728,7 +1728,7 @@
+ 		diagnostics = gpg_ctx_get_diagnostics (gpg);
+ 		errno = save;
+ 		
+-		g_set_error (err, GMIME_ERROR, errno, diagnostics);
++		g_set_error (err, GMIME_ERROR, errno, "%s", diagnostics);
+ 		gpg_ctx_free (gpg);
+ 		
+ 		return -1;
+@@ -1775,7 +1775,7 @@
+ 		diagnostics = gpg_ctx_get_diagnostics (gpg);
+ 		errno = save;
+ 		
+-		g_set_error (err, GMIME_ERROR, errno, diagnostics);
++		g_set_error (err, GMIME_ERROR, errno, "%s", diagnostics);
+ 		gpg_ctx_free (gpg);
+ 		
+ 		return -1;
+@@ -1828,7 +1828,7 @@
+ 		diagnostics = gpg_ctx_get_diagnostics (gpg);
+ 		errno = save;
+ 		
+-		g_set_error (err, GMIME_ERROR, errno, diagnostics);
++		g_set_error (err, GMIME_ERROR, errno, "%s", diagnostics);
+ 		gpg_ctx_free (gpg);
+ 		
+ 		return -1;
