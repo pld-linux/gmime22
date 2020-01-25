@@ -6,7 +6,6 @@
 %undefine	with_dotnet
 %endif
 
-%{?with_dotnet:%include	/usr/lib/rpm/macros.mono}
 Summary:	GMIME library
 Summary(pl.UTF-8):	Biblioteka GMIME
 Name:		gmime22
